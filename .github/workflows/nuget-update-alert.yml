@@ -1,0 +1,36 @@
+name: NuGet Update Alert
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  update-alert:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.x
+
+      - name: Check for Updates
+        run: dotnet outdated -u
+
+      - name: Send Alert
+        run: |
+          updated_packages=$(dotnet outdated -u -j)
+          if [ -n "$updated_packages" ]; then
+            echo "NuGet package updates available:"
+            echo "$updated_packages"
+            curl -X POST -H "Content-Type: application/json" -d '{
+              "content": "NuGet package updates available:\n```'"$updated_packages"'\n```"
+            }' $DISCORD_WEBHOOK_URL
+          else
+            echo "No NuGet package updates available."
+          fi
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
