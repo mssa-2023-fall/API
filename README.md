@@ -26,7 +26,7 @@ Tip: Keeping environments separate allows safe testing and development without a
 Use Rapid API: Once your API is stable in production, publish it through a Rapid API account.
 
 Tip: Rapid API is a platform that can help in monetizing and sharing your API with a broader audience. Ensure your API documentation is clear before publishing.
-Secure a Custom Domain: Acquire a custom domain with the appropriate SSL certificates. Your target domain is https://mortgageapi.mssahotdogs.com/.
+Secure a Custom Domain: Acquire a custom domain with the appropriate SSL certificates. Your target domain is https://glizzyglobal.net
 
 Tip: SSL certificates not only secure the data transfer but also instill trust among your API users. Use Azure's App Service to manage domains and SSL with ease.
 
