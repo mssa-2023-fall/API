@@ -1,8 +1,9 @@
 name: NuGet Update Alert
 
 on:
+  workflow_dispatch:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 8 * * *"
 
 jobs:
   update-alert:
