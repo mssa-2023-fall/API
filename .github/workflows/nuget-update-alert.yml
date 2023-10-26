@@ -18,19 +18,19 @@ jobs:
           dotnet-version: 6.x
 
       - name: Check for Updates
-        run: dotnet outdated -u
+        run: dotnet outdated MSSAMortgageCalculator --include "MSSAMortgageCalculator"
 
       - name: Send Alert
         run: |
           updated_packages=$(dotnet outdated -u -j)
           if [ -n "$updated_packages" ]; then
-            echo "NuGet package updates available:"
+            echo "Glizzies available:"
             echo "$updated_packages"
             curl -X POST -H "Content-Type: application/json" -d '{
               "content": "NuGet package updates available:\n```'"$updated_packages"'\n```"
             }' $DISCORD_WEBHOOK_URL
           else
-            echo "No NuGet package updates available."
+            echo "No Glizzies today..."
           fi
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
