@@ -12,7 +12,7 @@ Larry
 2.	Develop Your WebAPI: Use asp.net to craft your web API. Make sure to include an OpenAPI specification which will offer clear documentation for users.
 •	Tip: OpenAPI specs are essential for clear communication and setting expectations with the users of your API. Tools like Swagger can help generate and visualize these specifications.
 
-3.	Stay Updated on Libraries: Ensure you have a mechanism to be alerted when new libraries are available.
+3.	✔️ Stay Updated on Libraries: Ensure you have a mechanism to be alerted when new libraries are available.
 •	Tip: This could mean subscribing to newsletters or notifications from package repositories or library sources related to your project.
 
 4.	Deploy on Azure: Make your API live by deploying it on an Azure website. 
