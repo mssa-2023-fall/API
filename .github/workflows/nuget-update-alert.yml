@@ -35,6 +35,6 @@ jobs:
           else
             echo "NuGet package updates are available:"
             curl -X POST -H "Content-Type: application/json" \
-              -d '{"content": "Come get your Glizzies!!!"}' \
+              -d '{"content": "Come get your Glizzies!!! $OUTPUT\"}' \
               "$DISCORD_WEBHOOK_URL"
           fi
