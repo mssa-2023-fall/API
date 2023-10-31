@@ -7,8 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 //Waiting for MortgageCalculatorLibrary 1.1 Release, build error for now.
-builder.Services.AddSingleton<ICurrencyRateProvider, CurrencyServiceRateProvider>();
-builder.Services.AddSingleton<ICurrencyConverter, CurrencyConverter>();
+///builder.Services.AddSingleton<ICurrencyRateProvider, CurrencyServiceRateProvider>();
+///builder.Services.AddSingleton<ICurrencyConverter, CurrencyConverter>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle //NO
 builder.Services.AddEndpointsApiExplorer();
