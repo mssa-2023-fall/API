@@ -12,15 +12,21 @@ namespace GlizzyGlobal.Controllers
     public class MortgageController : ControllerBase
     {
         private readonly ILogger<MortgageController> _logger;
+
+        #region Waiting for MortgageCalculatorLibrary 1.1 release
+        //private readonly ICurrencyConverter _currencyConverter;
+        #endregion 
+
         //Added this for logging, don't know what its doing. Came from WeatherForeCastController.cs(null)
         public MortgageController(ILogger<MortgageController> logger)
         {
             _logger = logger;
+          //  _currencyConverter = currencyConverter ?? throw new ArgumentNullException(nameof(currencyConverter));
         }
 
         // Endpoint to create a new mortgage.
         [HttpGet("Calculate Your Payment Here")]
-        public ActionResult<decimal> CalculateMonthlyPayment(
+        public ActionResult<decimal> CalculateMonthlyPayments(
            [FromQuery] decimal interestRate,
            [FromQuery] decimal principalAmount,
            [FromQuery] DateTime originationDate,
@@ -31,13 +37,36 @@ namespace GlizzyGlobal.Controllers
             _logger.LogInformation($"Inputs - InterestRate: {interestRate}, PrincipalAmount: {principalAmount}, OriginationDate: {originationDate}, LoanTerm: {loanTerm}, MonthlyEscrow: {monthlyEscrow}");
             return Ok(mortgage.CalculateMonthlyPayment());
         }
-        [HttpPost]
+        #region Waiting for MortgageCalculatorLibrary 1.1 release
+        [HttpGet("Convert Global Currency Rates:")]
+        public ActionResult<Money> ConvertCurrency(
+            [FromQuery] string convertFromThisCurrency,
+            [FromQuery] string convertToThisCurrency,
+            [FromQuery] decimal amount)
+        {
+            _logger.LogInformation($"Converting {amount} from {convertFromThisCurrency}, to {convertToThisCurrency}");
+            var convertedAmount = _currencyConverter.Convert(convertFromThisCurrency, convertToThisCurrency);
+            return Ok(convertedAmount);
+        }
+        #endregion
+
+
+        [HttpPost("Create a mortgage (deprecated)")]
         public ActionResult<Mortgage> CreateMortgage(Mortgage mortgage)
         {
             
             return Ok(mortgage);
         }
     }
+
+
+
+
+
+
+
+
+
     //Added this for logging, don't know what its doing.
     public class MortgageLoggingFilter : ActionFilterAttribute
     {
