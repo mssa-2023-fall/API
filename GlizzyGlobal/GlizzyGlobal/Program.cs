@@ -1,4 +1,5 @@
 using GlizzyGlobal;
+using GlizzyGlobal.Controllers;
 using MortgageCalculatorLibrary;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,11 +28,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-<<<<<<< HEAD
-app.UseRequestIP();
-=======
 app.UseRequestIP(); 
->>>>>>> Added currency conversion to API
 
 app.MapControllers();
 
