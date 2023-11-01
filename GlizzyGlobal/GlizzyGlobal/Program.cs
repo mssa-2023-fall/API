@@ -28,7 +28,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.UseRequestIP(); 
+//app.UseRequestIP(); 
 
 app.MapControllers();
 
